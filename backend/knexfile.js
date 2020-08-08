@@ -8,7 +8,9 @@ module.exports = {
       filename: './src/database/db.sqlite'
     },
     migrations:{
-      directory: './src/database/migrations'
+      directory: './src/database/migrations',
+      //para setar nulo como padrão0 do SQLite
+      useNullAsDefault: true
     },
   },
 

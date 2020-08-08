@@ -1,5 +1,10 @@
 const express = require('express');
 
+const OngController = require('./controllers/OngController');
+const IncidentController = require('./controllers/IncidentController');
+const ProfileController = require('./controllers/ProfileController');
+const SessionController = require('./controllers/SessionController');
+
 //Desacoplando as rotas do express para gerenciar nesse arquivo
 const routes = express.Router();
 /*
@@ -33,18 +38,20 @@ routes.get('/', (request, response)=>{
         evento: 'semana omnistack 11.0',
         aluno: 'Fabio Anderson'
     });
-})
+});
 
 
-routes.get('/users', (request, response)=>{
-    const params = request.query;
-    return response.json({
-        evento: 'semana omnistack 11.0',
-        aluno: 'Fabio Anderson'
-    });
-    console.log(params);
+routes.post('/ongs', OngController.create);
+routes.get('/ongs', OngController.index);
 
-})
+routes.post('/incidents',IncidentController.create);
+routes.post('/incidents',IncidentController.index);
+routes.delete('/incidents/:id',IncidentController.delete);
+
+routes.get('/profile', ProfileController.index);
+
+routes.post('/sessions', SessionController.create);
+
 
 //exporta a variavel de dentro de um arquivo
 module.exports = routes;
